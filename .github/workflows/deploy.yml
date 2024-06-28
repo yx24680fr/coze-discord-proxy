@@ -1,0 +1,22 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Trigger Render Deploy
+        run: |
+          echo "Triggering Render Deploy..."
+          curl -X POST 'https://api.render.com/deploy/srv-cpvelphu0jms73ar3alg?key=rY9Y0bqv8J4'
